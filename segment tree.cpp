@@ -23,3 +23,14 @@ ll query(int l,int r,int ql,int qr,int cur)
         return(max(query(l,mid,ql,mid,2*cur),query(mid+1,r,mid+1,qr,2*cur+1)));
     }
 }
+void update(int l,int r,int ind,int i,ll tar,vector<ll> &seg)
+{
+    //cout<<i<<" ";
+    if(l==r){seg[i]=tar;return;}
+    int mid=(l+r)>>1;
+    if(ind<=mid)
+    update(l,mid,ind,2*i,tar,seg);
+    else 
+    update(mid+1,r,ind,2*i+1,tar,seg);
+    seg[i]=max(seg[2*i],seg[2*i+1]);
+}
